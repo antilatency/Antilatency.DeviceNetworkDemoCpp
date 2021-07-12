@@ -85,10 +85,9 @@
     <ItemGroup>
         <Compile Remove="AntilatencySdk\**" />
         <None Remove="AntilatencySdk\**" />
-        <AntilatencySdkApiFiles Include="AntilatencySdk\Api\*.h" />
     </ItemGroup>
     <Choose>
-        <When Condition="$(Platform) == 'x86'">
+        <When Condition="$(Platform) == 'Win32'">
             <ItemGroup>
                 <AntilatencySdkDlls Include="AntilatencySdk\Bin\Windows\x86\*.dll"/>
             </ItemGroup>
@@ -99,9 +98,6 @@
             </ItemGroup>
         </When>
     </Choose>
-    <ItemGroup>
-        <Compile Include="@(AntilatencySdkApiFiles)" />
-    </ItemGroup>
     <Target Name="CopyCustomContent" AfterTargets="AfterBuild">
         <Copy SourceFiles="@(AntilatencySdkDlls)" DestinationFolder="$(OutDir)" />
     </Target>

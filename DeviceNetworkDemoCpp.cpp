@@ -63,10 +63,6 @@ int main() {
     uint32_t prevUpdateId = 0;
 
     while (true) {
-        // if (exitRequested) {
-        //     break;
-        // }
-
         // Check if the network has been changed.
         const uint32_t currentUpdateId = network.getUpdateId();
         if (prevUpdateId != currentUpdateId) {

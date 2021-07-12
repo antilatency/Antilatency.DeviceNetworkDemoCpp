@@ -4,20 +4,6 @@
 #include <Antilatency.DeviceNetwork.h>
 
 
-bool exitRequested = false;
-
-BOOL WINAPI consoleHandler(DWORD signal) {
-    if (signal == CTRL_C_EVENT) {
-        exitRequested = true;
-        return FALSE;
-    } else if (signal == CTRL_CLOSE_EVENT || signal == CTRL_BREAK_EVENT) {
-        exitRequested = true;
-        return FALSE;
-    }
-
-    return FALSE;
-}
-
 /*
  * Get a device filter for all Antilatency USB devices.
  */
@@ -52,13 +38,6 @@ Antilatency::DeviceNetwork::IDeviceFilter getAntilatencyUsbSocketDevicesFilter(A
 }
 
 int main() {
-
-#ifdef _WIN64
-    SetDllDirectory(L"AntilatencySdk/Bin/Windows/x64");
-#else
-    SetDllDirectory(L"AntilatencySdk/Bin/Windows/x86");
-#endif
-    
     // Load the Antilatency Device Network library
     Antilatency::DeviceNetwork::ILibrary deviceNetworkLibrary = Antilatency::InterfaceContract::getLibraryInterface<Antilatency::DeviceNetwork::ILibrary>("AntilatencyDeviceNetwork");
     if (deviceNetworkLibrary == nullptr) {
@@ -84,9 +63,9 @@ int main() {
     uint32_t prevUpdateId = 0;
 
     while (true) {
-        if (exitRequested) {
-            break;
-        }
+        // if (exitRequested) {
+        //     break;
+        // }
 
         // Check if the network has been changed.
         const uint32_t currentUpdateId = network.getUpdateId();

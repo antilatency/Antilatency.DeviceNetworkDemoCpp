@@ -92,7 +92,7 @@ int main() {
 
                 std::cout << "Node: " << static_cast<uint32_t>(node) << std::endl;
 
-                std::cout << "\tStatus: " << static_cast<uint32_t>(status) << std::endl;
+                std::cout << "\tStatus: " << Antilatency::enumToString(status) << std::endl;
                 std::cout << "\tParent node: " << static_cast<uint32_t>(parent) << std::endl;
 
                 std::cout << "\tProperties: " << std::endl;
